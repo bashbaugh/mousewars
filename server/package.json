@@ -14,6 +14,7 @@
   "dependencies": {
     "@colyseus/monitor": "^0.14.20",
     "colyseus": "^0.14.20",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "paper": "^0.12.15"
   }
 }
