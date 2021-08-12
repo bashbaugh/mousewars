@@ -6,7 +6,9 @@ import { Size } from "paper/dist/paper-core"
 Paper.setup(new Paper.Size([2000, 2000]))
 
 const STARTING_SEGMENTS = 100
-const SEGMENT_LENGTH = 5
+const SEGMENT_LENGTH = 1
+
+const NUM_SEGMENTS_TO_HIT_TEST = 1
 
 class Player extends Schema {
   constructor (clientId: string) {
@@ -78,11 +80,17 @@ export default class SnakeRoom extends Room<PongState> {
 
       // a?.remove()
 
-      console.log(
-        s.path.hitTestAll(s.path.firstSegment.point)
-        .map(hr => hr.item.data)
-        // .filter(hitResult => hitResult.item.data.playerId !== client.id)
-      )
+      // console.log('---')
+      // for (let seg = 0; seg < NUM_SEGMENTS_TO_HIT_TEST; seg++) {
+      //   if (
+      //     Paper.project.hitTestAll(s.path.segments[seg].point)
+      //     .filter(hitResult => hitResult.item.data.playerId !== client.id)
+      //     .length
+      //   ) console.log(`HIT at segment ${seg}`)
+      // }
+      console.log(Paper.project.hitTestAll(s.path.firstSegment.point)
+      .filter(hitResult => hitResult.item.data.playerId !== client.id)
+      .map(hr => hr.item.data))
     })
   }
 
